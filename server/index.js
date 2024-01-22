@@ -5,7 +5,7 @@ const e = require("cors");
 const Redis = r.Redis;
 const io = require("socket.io")(server, {
 	cors: {
-		origin: ["http://localhost:3000", "https://copyss.vercel.app"],
+		origin: ["http://localhost:3000", "https://copyss.vercel.app:3000"],
 		methods: ["GET", "POST"],
 	},
 });
