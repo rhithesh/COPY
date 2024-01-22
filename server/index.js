@@ -16,14 +16,6 @@ const redis = new Redis({
 		"AYaSASQgMzE1MzM3MWItNDYzMi00ZjU2LWJiOTEtNjk3OTkyNDJmMTlhMTkxZmNmY2RhMDZlNGNmMDhmYjZkODZiMzhmZmZmYTU=",
 });
 
-async function main() {
-	const data = await redis.set("foo", "bar");
-	const exists = await redis.exists("foop");
-	console.log(exists, "checking existance");
-	console.log(data, "jncjn");
-}
-
-main();
 const port = 8080;
 const cors = require("cors");
 
