@@ -1,43 +1,53 @@
 "use client";
 import Image from "next/image";
 import { io } from "socket.io-client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
+
+const socket = io("http://localhost:8080", { transports: ["websocket"] });
 
 export default function Home() {
-	const socket = io("http://localhost:8080");
-	console.log(socket.connected);
-	// socket.connect();
-	// socket.on("connection", () => {
-	// 	console.log("Connected to the server!");
-	// });
+	const [hello, setHello] = useState("");
+	const [something, setSomething] = useState("");
+	const [room, setRoom] = useState("");
+	const router = useRouter();
 
-	const [hello, setHello] = useState("hello");
-	socket.on("connect", () => {
-		console.log(socket.id);
-	});
-	//socket.emit("message", "hello", "hi	there");
-	socket.on("reaction", (data) => {
-		console.log(data);
-		setHello(data);
-	});
+	useEffect(() => {
+		socket.connect();
+		socket.on("connect", () => {
+			console.log("connected");
+		});
+		socket.on("chat message", (message: string) => {
+			console.log(message, "from web sockets");
+			setSomething(message);
+		});
+
+		return () => {
+			socket.disconnect();
+			socket.off("join-room");
+			socket.off("connect");
+			socket.off("messagei");
+		};
+	}, [socket]);
+
 	return (
-		<main className="flex min-h-screen flex-col items-center justify-between p-24">
-			<h1>
-				my name is hithesh {socket.id}
-				<span className=" border-2">{hello}</span> k{" "}
-			</h1>
-			<input
-				onChange={(e) => {
-					setHello(e.target.value);
-				}}
-			/>
-
-			<button
-				onClick={() => {
-					socket.emit("message", hello, "hi	there");
-				}}>
-				emitting something
-			</button>
+		<main className="flex min-h-screen flex-col items-center justify-between">
+			<div className="flex border-2 rounded-md">
+				<div className="pt-2  font-light pb-3 pr-1 pl-2">https://copy/</div>
+				<input
+					onChange={(e) => {
+						setRoom(e.target.value);
+					}}
+					className="  pl-1 italic  outline-none border-2"
+				/>
+				<button
+					className="outline-none  bg-green-600 w-[50px]"
+					onClick={() => {
+						router.push("/" + room);
+					}}>
+					Go
+				</button>
+			</div>
 		</main>
 	);
 }
