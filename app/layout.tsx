@@ -17,7 +17,9 @@ export default function RootLayout({
 	return (
 		<html lang="en">
 			<body className={inter.className}>
-				<span className=" p-8  text-red-900  font-black">Copy</span>
+				<div className="flex border-2">
+					<span className="   text-red-900  font-black">Copy</span>
+				</div>
 
 				{children}
 			</body>
