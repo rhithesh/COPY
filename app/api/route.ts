@@ -28,3 +28,7 @@ export async function POST(request: Request) {
 		return Response.json({ value: value });
 	}
 }
+
+export async function GET(request: Request) {
+	return Response.json({ value: "all good" });
+}
