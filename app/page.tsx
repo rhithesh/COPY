@@ -4,7 +4,7 @@ import { io } from "socket.io-client";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 
-const socket = io("https://workers-y4zp.onrender.com:8080", {
+const socket = io("http://localhost:8080", {
 	transports: ["websocket"],
 });
 
