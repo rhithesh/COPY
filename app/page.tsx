@@ -50,15 +50,15 @@ export default function Home() {
 	}
 
 	return (
-		<main className="flex min-h-screen  border-2  content-center  items-center justify-center">
+		<main className="flex   h-[90vh]  border-2  content-center  items-center justify-center">
 			<div className="flex flex-col">
 				<div className="p-5">
 					<svg xmlns="http://www.w3.org/2000/svg" width="200" height="50">
 						<text
 							x="110"
 							y="40"
-							font-family="Arial, sans-serif"
-							font-size="30"
+							fontFamily="Arial, sans-serif"
+							fontSize="30"
 							fill="black">
 							COPY
 						</text>

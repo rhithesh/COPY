@@ -26,14 +26,14 @@ export default function RootLayout({
 
 				{children}
 
-				<footer className=" bg-black text-white py-4 h-[100px]">
+				<div className=" bg-black text-white py-4 h-[100px]">
 					<div className="container mx-auto flex justify-center">
 						<div className=" text-lg  font-medium flex flex-col text-center">
-							<p>&copy; {new Date().getFullYear()}</p>
+							<p>&copy; </p>
 							<p>WE ARE THE BEST PLACE FOR YOU TO COPY </p>
 						</div>
 					</div>
-				</footer>
+				</div>
 			</body>
 		</html>
 	);
