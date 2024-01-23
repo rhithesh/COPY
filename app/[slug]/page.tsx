@@ -2,6 +2,7 @@
 import { useEffect, useState } from "react";
 import { socket } from "../socket";
 import { useClipboard } from "use-clipboard-copy";
+import { Button } from "@/components/Button";
 
 export default function Page({ params }: { params: { slug: string } }) {
 	const [something, setSomething] = useState("");
@@ -46,12 +47,12 @@ export default function Page({ params }: { params: { slug: string } }) {
 	}, []);
 
 	return (
-		<main className="flex min-h-screen flex-col ">
-			<button
-				className="mr-auto ml-2 my-2 bg-green-400 p-1 rounded-md  font-semibold"
+		<main className="flex min-h-screen flex-col pt-11 ">
+			<Button
+				className="mr-auto ml-2 my-2 shadow-lg bg-green-400  rounded-md  hover:bg-green-600 p-2  font-semibold"
 				onClick={clipboard.copy}>
-				copy
-			</button>
+				copy link
+			</Button>
 			<textarea
 				ref={clipboard.target}
 				className="border-2 ml-2 min-h-screen w-screen"
