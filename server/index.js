@@ -20,6 +20,10 @@ const port = 8080;
 const cors = require("cors");
 
 app.use(cors());
+
+app.get("/", async (req, res) => {
+	return res.status(200).json({ message: "hello" });
+});
 app.post("/", async (req, res) => {
 	console.log(req.headers.checker);
 	console.log("request made");
