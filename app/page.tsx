@@ -76,6 +76,7 @@ export default function Home() {
 						className=" pl-1 italic  font-light   ring-zinc-950"
 					/>
 					<Button
+						disabled={stringt}
 						className="outline-none  bg-green-600 w-[50px]"
 						onClick={() => {
 							router.push("/" + room);
