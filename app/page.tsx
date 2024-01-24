@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation";
 import { Button } from "@/components/Button";
 import Link from "next/link";
 
-const socket = io("https://copy-rouge.vercel.app", {
+const socket = io("http://localhost:8080", {
 	transports: ["websocket"],
 });
 
