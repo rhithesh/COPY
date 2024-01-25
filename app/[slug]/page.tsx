@@ -22,7 +22,6 @@ export default function Page({ params }: { params: { slug: string } }) {
 
 		return () => {
 			socket.disconnect();
-			socket.off("join-room");
 			socket.off("connect");
 			socket.off("chat message");
 		};
