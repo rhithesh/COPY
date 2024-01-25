@@ -17,24 +17,6 @@ export default function Home() {
 	const [stringt, setstringt] = useState<boolean>(false);
 	const router = useRouter();
 
-	useEffect(() => {
-		socket.connect();
-		socket.on("connect", () => {
-			console.log("connected");
-		});
-		socket.on("chat message", (message: string) => {
-			console.log(message, "from web sockets");
-			setSomething(message);
-		});
-
-		return () => {
-			socket.disconnect();
-			socket.off("join-room");
-			socket.off("connect");
-			socket.off("messagei");
-		};
-	}, [socket]);
-
 	function checkstring(str: string) {
 		// Check if the stripped string is equal to the original string
 		var a = str.trim();

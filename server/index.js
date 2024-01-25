@@ -47,14 +47,9 @@ const numbersCharacterSet =
 const generateKey = customAlphabet(numbersCharacterSet, 5);
 
 io.on("connect", (socket) => {
-	socket.on("set", (room) => {
-		socket.join(room);
-		console.log("joined a room");
-	});
-
 	console.log(socket.id);
 	socket.on("chat message", async (msg, room) => {
-		io.to(room).emit("chat message", msg);
+		socket.to(room).emit("chat message", msg);
 		const data = await redis.set(room, msg);
 		console.log(data, "data");
 	});

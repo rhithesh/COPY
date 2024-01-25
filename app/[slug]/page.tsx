@@ -20,7 +20,6 @@ export default function Page({ params }: { params: { slug: string } }) {
 				isSocketConnected.current = true;
 			});
 			socket.on("chat message", (message: string) => {
-				console.log(message, "from web sockets");
 				setSomething(message);
 			});
 		}
