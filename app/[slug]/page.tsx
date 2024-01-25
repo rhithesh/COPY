@@ -22,9 +22,9 @@ export default function Page({ params }: { params: { slug: string } }) {
 			socket.disconnect();
 			socket.off("join-room");
 			socket.off("connect");
-			socket.off("messagei");
+			socket.off("chat message");
 		};
-	}, []);
+	}, [socket]);
 
 	useEffect(() => {
 		const headers = new Headers();
