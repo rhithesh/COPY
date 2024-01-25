@@ -18,6 +18,8 @@ export default function Page({ params }: { params: { slug: string } }) {
 			setSomething(message);
 		});
 
+		console.log("rerenders1");
+
 		return () => {
 			socket.disconnect();
 			socket.off("join-room");
@@ -27,6 +29,7 @@ export default function Page({ params }: { params: { slug: string } }) {
 	}, [socket]);
 
 	useEffect(() => {
+		console.log("rerenders2");
 		const headers = new Headers();
 		headers.append("Content-Type", "application/json");
 		headers.append("checker", params.slug);
