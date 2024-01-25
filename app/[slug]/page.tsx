@@ -1,12 +1,16 @@
 "use client";
-import { useEffect, useState } from "react";
-import { socket } from "../socket";
+import { useEffect, useState, useRef } from "react";
 import { useClipboard } from "use-clipboard-copy";
 import { Button } from "@/components/Button";
+import { io } from "socket.io-client";
+const socket = io("https://copyserver1.onrender.com", {
+	transports: ["websocket"],
+});
 
 export default function Page({ params }: { params: { slug: string } }) {
 	const [something, setSomething] = useState("");
 	const clipboard = useClipboard();
+	const isSocketConnected = useRef(false);
 
 	useEffect(() => {
 		if (!isSocketConnected.current) {
