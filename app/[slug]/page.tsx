@@ -24,7 +24,7 @@ export default function Page({ params }: { params: { slug: string } }) {
 			socket.off("connect");
 			socket.off("messagei");
 		};
-	}, [socket]);
+	}, []);
 
 	useEffect(() => {
 		const headers = new Headers();
