@@ -24,7 +24,6 @@ export async function POST(request: Request) {
 		return Response.json({ newvalue: "newvalueset" });
 	} else {
 		const value = await redis.get(requestBody.hello);
-		console.log(value, "jjj");
 		return Response.json({ value: value });
 	}
 }

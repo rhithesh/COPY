@@ -31,7 +31,7 @@ export default function Page({ params }: { params: { slug: string } }) {
 		headers.append("Content-Type", "application/json");
 		headers.append("checker", params.slug);
 		console.log(headers);
-		fetch("http://localhost:3000/api", {
+		fetch("https://copying-theta.vercel.app/api", {
 			method: "POST",
 			headers: headers,
 			body: JSON.stringify({ hello: params.slug }),
