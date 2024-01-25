@@ -9,19 +9,21 @@ export default function Page({ params }: { params: { slug: string } }) {
 	const clipboard = useClipboard();
 
 	useEffect(() => {
-		socket.connect();
-		socket.on("connect", () => {
-			console.log("connected");
-		});
-		socket.on("chat message", (message: string) => {
-			console.log(message, "from web sockets");
-			setSomething(message);
-		});
-
-		console.log("rerenders1");
+		if (!isSocketConnected.current) {
+			socket.connect();
+			socket.on("connect", () => {
+				console.log("connected");
+				isSocketConnected.current = true;
+			});
+			socket.on("chat message", (message: string) => {
+				console.log(message, "from web sockets");
+				setSomething(message);
+			});
+		}
 
 		return () => {
 			socket.disconnect();
+			socket.off("join-room");
 			socket.off("connect");
 			socket.off("chat message");
 		};
