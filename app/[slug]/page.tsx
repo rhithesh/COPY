@@ -31,7 +31,7 @@ export default function Page({ params }: { params: { slug: string } }) {
 			socket.off("connect");
 			socket.off("chat message");
 		};
-	}, [socket]);
+	}, []);
 
 	useEffect(() => {
 		console.log("rerenders2");
