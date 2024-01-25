@@ -59,7 +59,7 @@ export default function Page({ params }: { params: { slug: string } }) {
 				value={something}
 				onChange={(e) => {
 					setSomething(e.target.value);
-					socket.emit("chat message", something, params.slug);
+					socket.emit("chat message", e.target.value, params.slug);
 				}}
 			/>
 			{/* <div className="border-2  border-blue-800 basis-1/2">{something}</div>
