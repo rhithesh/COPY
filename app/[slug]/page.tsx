@@ -58,7 +58,7 @@ export default function Page({ params }: { params: { slug: string } }) {
 			<Button
 				className="mr-auto ml-2 my-2 shadow-lg bg-green-400  rounded-md  hover:bg-green-600 p-2  font-semibold"
 				onClick={clipboard.copy}>
-				copy link
+				copy
 			</Button>
 			<textarea
 				ref={clipboard.target}
