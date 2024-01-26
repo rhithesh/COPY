@@ -54,7 +54,7 @@ export default function Page({ params }: { params: { slug: string } }) {
 	}, []);
 
 	return (
-		<main className="flex min-h-screen flex-col pt-20 ">
+		<main className="flex min-h-screen flex-col pt-20 overflow-hidden ">
 			<Button
 				className="mr-auto ml-2 my-2 shadow-lg bg-green-400  rounded-md  hover:bg-green-600 p-2  font-semibold"
 				onClick={clipboard.copy}>
