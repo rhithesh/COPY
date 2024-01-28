@@ -62,7 +62,7 @@ export default function RootLayout({
 								bjwefjkwebfjk wljenfkjwebfkjew jnefwkjbekjwfb jkbewfkjbfe
 								jwebfnkjewbfke jkwefbjkfwb ekqjfbekwjbfwkjbf wjkefbkejwbfk
 								wkejfbkjwebfkej jkbewfkjfbekjw jwbefkkjwebfkje
-								ekhfbwkhebfekwjhbf kjwefbjkewbfek jkfewbkjwebfewkj{" "}
+								ekhfbwkhebfekwjhbf kjwefbjkewbfek jkfewbkjwebfewkj
 							</AccordionContent>
 						</AccordionItem>
 						<AccordionItem value="item-4" className=" rounded-md   ">
