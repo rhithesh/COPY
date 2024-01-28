@@ -25,15 +25,7 @@ export default function RootLayout({
 				</div>
 
 				{children}
-
-				<div className=" bg-black text-white py-4 h-[100px]">
-					<div className="container mx-auto flex justify-center">
-						<div className=" text-lg  font-medium flex flex-col text-center">
-							<p>&copy; </p>
-							<p>WE ARE THE BEST PLACE FOR YOU TO COPY </p>
-						</div>
-					</div>
-				</div>
+				<h1>hello</h1>
 			</body>
 		</html>
 	);

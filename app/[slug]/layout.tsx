@@ -8,7 +8,6 @@ export default function DashboardLayout({
 			{/* Include shared UI here e.g. a header or sidebar */}
 
 			{children}
-			<footer>Hithesh ramesh</footer>
 		</section>
 	);
 }

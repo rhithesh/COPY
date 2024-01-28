@@ -49,8 +49,10 @@ const generateKey = customAlphabet(numbersCharacterSet, 5);
 io.on("connect", (socket) => {
 	console.log(socket.id);
 	socket.on("chat message", async (msg, room) => {
-		socket.to(room).emit("chat message", msg);
-		const data = await redis.set(room, msg);
+		socket.to(msg.room).emit("chat message", msg);
+		console.log(msg.room);
+		var cas = JSON.stringify(msg.message);
+		const data = await redis.set(msg.room, cas);
 		console.log(data, "data");
 	});
 

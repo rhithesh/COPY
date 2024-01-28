@@ -1,0 +1,71 @@
+"use client";
+import { useState } from "react";
+
+export default function Third() {
+	const [group, setHello] = useState([""]);
+	const [change, setChange] = useState([""]);
+	return (
+		<>
+			<div className="mx-auto overflow-auto  container  border-2 ">
+				<button
+					className="p-3"
+					onClick={() => {
+						setHello([...group, ""]);
+						setChange([...change, ""]);
+					}}>
+					add
+				</button>
+				<button
+					className="p-2 bg-yellow-500 rounded-lg"
+					onClick={() => {
+						setHello(group.slice(0, -1));
+						setChange(change.slice(0, -1));
+					}}>
+					Delete
+				</button>
+				<div className="grid  md:grid-cols-4 mx-auto  gap-3    auto-rows-[740px]  grid-auto  ">
+					{group.map((item, index) => {
+						const j = Math.floor(100 / index + 1);
+						return (
+							<>
+								<div
+									key={index}
+									className={`${
+										group.length == 1
+											? "col-span-4 row-span-max "
+											: group.length == 2
+											? "col-span-2 row-span-2  "
+											: "col-span-2 row-span-1"
+									} rounded-md border-2  relative  m-1 border-red-400`}>
+									<div className="flex  absolute right-0 ">
+										<button
+											className="m-2 p-2 bg-red-500  text-white  rounded-lg"
+											onClick={() => {
+												setHello(group.filter((item, i) => i !== index));
+												setChange((prevChange) =>
+													prevChange.filter((item, i) => i !== index),
+												);
+											}}>
+											Close
+										</button>
+									</div>
+
+									<textarea
+										className="w-full h-full text-cyan-400 pl-3 pt-3"
+										value={change[index]}
+										onChange={(e) => {
+											var h = [...change];
+											h[index] = e.target.value;
+											console.log(h);
+											setChange(h);
+										}}
+									/>
+								</div>
+							</>
+						);
+					})}
+				</div>
+			</div>
+		</>
+	);
+}

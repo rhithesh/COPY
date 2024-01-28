@@ -11,6 +11,8 @@ export default function Page({ params }: { params: { slug: string } }) {
 	const [something, setSomething] = useState("");
 	const clipboard = useClipboard();
 	const isSocketConnected = useRef(false);
+	const [noTextarea, setnoTextarea] = useState([""]);
+	const [Textcont, setTextcont] = useState([""]);
 
 	useEffect(() => {
 		if (!isSocketConnected.current) {
@@ -19,8 +21,10 @@ export default function Page({ params }: { params: { slug: string } }) {
 				console.log("connected");
 				isSocketConnected.current = true;
 			});
-			socket.on("chat message", (message: string) => {
-				setSomething(message);
+			socket.on("chat message", (message) => {
+				console.log("message coming from socket", typeof message);
+				setnoTextarea(message.message);
+				setTextcont(message.message);
 			});
 		}
 
@@ -47,30 +51,69 @@ export default function Page({ params }: { params: { slug: string } }) {
 				return response.json();
 			})
 			.then((t) => {
-				console.log(t);
 				socket.emit("join-room", params.slug);
 				setSomething(t.value);
+				setnoTextarea(t.value);
+				setTextcont(t.value);
 			});
 	}, []);
 
 	return (
-		<main className="flex min-h-screen flex-col pt-20 overflow-hidden ">
-			<Button
-				className="mr-auto ml-2 my-2 shadow-lg bg-green-400  rounded-md  hover:bg-green-600 p-2  font-semibold"
-				onClick={clipboard.copy}>
-				copy
-			</Button>
-			<textarea
-				ref={clipboard.target}
-				className="border-2 ml-2 min-h-screen w-screen"
-				value={something}
-				onChange={(e) => {
-					setSomething(e.target.value);
-					socket.emit("chat message", e.target.value, params.slug);
-				}}
-			/>
-			{/* <div className="border-2  border-blue-800 basis-1/2">{something}</div>
-			</div> */}
+		<main className="flex min-h-screen  border-2 flex-col pt-20  ">
+			<div>
+				<Button
+					className="mr-auto ml-2 my-2 shadow-lg bg-green-400  rounded-md  hover:bg-green-600 p-2  font-semibold"
+					onClick={clipboard.copy}>
+					copy
+				</Button>
+				<Button
+					className="mr-auto ml-2 my-2 shadow-lg bg-green-400  rounded-md  hover:bg-green-600 p-2  font-semibold"
+					onClick={(e) => {
+						setnoTextarea([...noTextarea, ""]);
+						console.log("clicked", noTextarea);
+					}}>
+					ADD
+				</Button>
+				<Button
+					className="mr-auto ml-2 my-2 shadow-lg bg-green-400  rounded-md  hover:bg-green-600 p-2  font-semibold"
+					onClick={(e) => {
+						setnoTextarea(noTextarea.slice(0, -1));
+						setTextcont(Textcont.slice(0, -1));
+						socket.emit("join-room", params.slug);
+					}}>
+					REMOVE
+				</Button>
+				<Button className="  p-2 rounded-xl ml-7">{noTextarea.length}</Button>
+
+				<div className="   flex   min-h-screen  gap-2 justify-between border-2 flex-wrap  border-red-400">
+					{noTextarea.map((t, i) => {
+						return (
+							<textarea
+								key={i}
+								value={Textcont[i]}
+								onChange={(e) => {
+									const b = [...Textcont];
+									b[i] = e.target.value;
+									setTextcont(b);
+									socket.emit("chat message", {
+										room: params.slug,
+										message: b,
+									});
+								}}
+								className={`border-2  bg-blue-200 ${
+									noTextarea.length == 1
+										? "md:basis-[100%] h-screen "
+										: noTextarea.length == 2
+										? "md:basis-[49%] min-h-screen"
+										: noTextarea.length > 2
+										? " md:basis-[49%]  h-screen  "
+										: "md:basis-[49%] h-screen "
+								} `}
+							/>
+						);
+					})}
+				</div>
+			</div>
 		</main>
 	);
 }
