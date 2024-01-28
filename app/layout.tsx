@@ -38,7 +38,7 @@ export default function RootLayout({
 						type="single"
 						collapsible
 						orientation="horizontal"
-						className="w-full   basis-1/2  ">
+						className="w-full   basis-full ">
 						<AccordionItem value="item-1" className=" basis-1/3 rounded-md  ">
 							<AccordionTrigger className=" text-white text-2xl	   ">
 								Is this use full
