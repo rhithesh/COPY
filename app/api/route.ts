@@ -21,7 +21,7 @@ export async function POST(request: Request) {
 	if (!exists) {
 		const value = await redis.set(requestBody.hello, "");
 
-		return Response.json({ newvalue: "newvalueset" });
+		return Response.json({ value: [""] });
 	} else {
 		const value = await redis.get(requestBody.hello);
 		return Response.json({ value: value });

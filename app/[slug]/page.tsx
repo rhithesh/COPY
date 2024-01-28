@@ -88,35 +88,37 @@ export default function Page({ params }: { params: { slug: string } }) {
 					}}>
 					REMOVE
 				</Button>
-				<Button className="  p-2 rounded-xl ml-7">{noTextarea.length}</Button>
+				<Button className="  p-2 rounded-xl ml-7">{noTextarea?.length}</Button>
 
 				<div className="   flex   min-h-screen  gap-2 justify-between border-2 flex-wrap  border-red-400">
-					{noTextarea.map((t, i) => {
-						return (
-							<textarea
-								key={i}
-								value={Textcont[i]}
-								onChange={(e) => {
-									const b = [...Textcont];
-									b[i] = e.target.value;
-									setTextcont(b);
-									socket.emit("chat message", {
-										room: params.slug,
-										message: b,
-									});
-								}}
-								className={`border-2  bg-blue-200 ${
-									noTextarea.length == 1
-										? "md:basis-[100%] h-screen "
-										: noTextarea.length == 2
-										? "md:basis-[49%] min-h-screen"
-										: noTextarea.length > 2
-										? " md:basis-[49%]  h-screen  "
-										: "md:basis-[49%] h-screen "
-								} `}
-							/>
-						);
-					})}
+					{Array.isArray(noTextarea)
+						? noTextarea?.map((t, i) => {
+								return (
+									<textarea
+										key={i}
+										value={Textcont[i]}
+										onChange={(e) => {
+											const b = [...Textcont];
+											b[i] = e.target.value;
+											setTextcont(b);
+											socket.emit("chat message", {
+												room: params.slug,
+												message: b,
+											});
+										}}
+										className={`border-2  bg-blue-200 ${
+											noTextarea.length == 1
+												? "md:basis-[100%] h-screen "
+												: noTextarea.length == 2
+												? "md:basis-[49%] min-h-screen"
+												: noTextarea.length > 2
+												? " md:basis-[49%]  h-screen  "
+												: "md:basis-[49%] h-screen "
+										} `}
+									/>
+								);
+						  })
+						: ""}
 				</div>
 			</div>
 		</main>
