@@ -23,8 +23,13 @@ export default function Page({ params }: { params: { slug: string } }) {
 			});
 			socket.on("chat message", (message) => {
 				console.log("message coming from socket", typeof message);
-				setnoTextarea(message.message);
-				setTextcont(message.message);
+				if (typeof message.message == "string") {
+					setnoTextarea([""]);
+					setTextcont([""]);
+				} else {
+					setnoTextarea(message.message);
+					setTextcont(message.message);
+				}
 			});
 		}
 
