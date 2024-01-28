@@ -108,12 +108,12 @@ export default function Page({ params }: { params: { slug: string } }) {
 										}}
 										className={`border-2  bg-blue-200 ${
 											noTextarea.length == 1
-												? "md:basis-[100%] h-screen "
+												? "md:basis-[100%] sm:basis-full h-screen "
 												: noTextarea.length == 2
-												? "md:basis-[49%] min-h-screen"
+												? "md:basis-[49%] sm:basis-full min-h-screen"
 												: noTextarea.length > 2
-												? " md:basis-[49%]  h-screen  "
-												: "md:basis-[49%] h-screen "
+												? " md:basis-[49%] sm:basis-full  h-screen  "
+												: "md:basis-[49%] sm:basis-full h-screen "
 										} `}
 									/>
 								);
