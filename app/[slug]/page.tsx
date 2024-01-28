@@ -3,7 +3,7 @@ import { useEffect, useState, useRef } from "react";
 import { useClipboard } from "use-clipboard-copy";
 import { Button } from "@/components/Button";
 import { io } from "socket.io-client";
-const socket = io("https://copyserver1.onrender.com", {
+const socket = io("http://localhost:8080", {
 	transports: ["websocket"],
 });
 
@@ -47,7 +47,7 @@ export default function Page({ params }: { params: { slug: string } }) {
 		headers.append("Content-Type", "application/json");
 		headers.append("checker", params.slug);
 		console.log(headers);
-		fetch("https://copying-theta.vercel.app/api", {
+		fetch("http://localhost:3000/api", {
 			method: "POST",
 			headers: headers,
 			body: JSON.stringify({ hello: params.slug }),
@@ -106,14 +106,14 @@ export default function Page({ params }: { params: { slug: string } }) {
 												message: b,
 											});
 										}}
-										className={`border-2  bg-blue-200 ${
+										className={`border-2  px-8  basis-full   bg-blue-200 ${
 											noTextarea.length == 1
-												? "md:basis-[100%] sm:basis-full h-screen "
+												? "md:basis-[100%]  h-screen "
 												: noTextarea.length == 2
-												? "md:basis-[49%] sm:basis-full min-h-screen"
+												? "md:basis-[49%]  min-h-screen"
 												: noTextarea.length > 2
-												? " md:basis-[49%] sm:basis-full  h-screen  "
-												: "md:basis-[49%] sm:basis-full h-screen "
+												? " md:basis-[49%]   h-screen  "
+												: "md:basis-[49%]  h-screen "
 										} `}
 									/>
 								);
