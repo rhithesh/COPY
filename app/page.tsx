@@ -32,7 +32,7 @@ export default function Home() {
 	}
 
 	return (
-		<main className="flex   h-[90vh]  border-2  content-center  items-center justify-center">
+		<main className="flex   h-[100vh] pt-36 content-center  items-center justify-center">
 			<div className="flex flex-col">
 				<div className="p-5">
 					<svg xmlns="http://www.w3.org/2000/svg" width="200" height="50">

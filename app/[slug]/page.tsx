@@ -71,7 +71,8 @@ export default function Page({ params }: { params: { slug: string } }) {
 			<div>
 				<div className=" justify-center items-center flex">
 					<Button
-						className=" ml-2 my-2 shadow-lg bg-green-400  rounded-md  hover:bg-green-600 p-2  font-semibold"
+						disabled
+						className=" ml-2 my-2 shadow-lg bg-green-400  rounded-md  hover:bg-green-600 p-2   font-semibold"
 						onClick={clipboard.copy}>
 						copy
 					</Button>
@@ -95,9 +96,16 @@ export default function Page({ params }: { params: { slug: string } }) {
 					<Button className="  p-2 rounded-xl ml-7">
 						{noTextarea?.length}
 					</Button>
+					<h1 className="  text-white pl-3 text-2xl font-semibold">
+						Copy button is yet to be implemented use
+						<span className=" pl-5 pr-6 mx-3 bg-blue-500 rounded-md">
+							{" "}
+							ctrl+a
+						</span>
+					</h1>
 				</div>
 
-				<div className="  mx-auto    w-[88%]  flex   min-h-screen  gap-2 justify-between  flex-wrap  ">
+				<div className="  mx-auto     w-[88%]  flex   min-h-screen  gap-2 justify-between  flex-wrap  ">
 					{Array.isArray(noTextarea)
 						? noTextarea?.map((t, i) => {
 								return (
@@ -113,7 +121,7 @@ export default function Page({ params }: { params: { slug: string } }) {
 												message: b,
 											});
 										}}
-										className={`border-2  px-2  basis-full  rounded-xl  bg-blue-200 ${
+										className={`border-2  px-2 py-2  basis-full  my-5 rounded-xl  	bg-black text-white ${
 											noTextarea.length == 1
 												? "md:basis-[100%]  h-screen "
 												: noTextarea.length == 2
