@@ -33,7 +33,7 @@ export default function RootLayout({
 				</div>
 
 				{children}
-				<div className="flex   bg-black  h-[70vh] 	rounded-md  gap-3  shadow-md">
+				<div className="flex   bg-black  h-[70vh]  border-2	rounded-md  gap-3  shadow-md">
 					<Accordion
 						type="single"
 						collapsible
@@ -92,8 +92,6 @@ export default function RootLayout({
 							</AccordionContent>
 						</AccordionItem>
 					</Accordion>
-					<div className=" basis-1/2"></div>
-					<div className=" basis-full"></div>
 				</div>
 			</body>
 		</html>
